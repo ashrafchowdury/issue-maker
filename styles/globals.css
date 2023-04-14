@@ -9,6 +9,9 @@
   button {
     @apply bg-dark dark:bg-light text-light dark:text-dark;
   }
+  /* .icon {
+    @apply bg-dark dark:bg-light text-light dark:text-dark;
+  } */
   /* Adding CSS manually is only necessary in JSFiddle,
    where CSS can't be inserted into the <head> */
   .typed-cursor {

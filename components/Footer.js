@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 import { FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { BiGitPullRequest } from "react-icons/bi";
-import Link from 'next/link';
+import Link from "next/link";
 const Footer = () => {
   return (
     <>
-          <hr className="my-12 border-light dark:border-dark w-full" />
-      <footer className=" flex flex-col justify-center items-center space-y-9 mb-20">
+      <hr className="my-12 border-light dark:border-dark w-full" />
+      <footer className=" flex flex-col justify-center items-center space-y-5 md:space-y-7 lg:space-y-9 mb-10 md:mb-16 lg:mb-20">
         <Link href="/" className="flex items-center mr-6">
           <BiGitPullRequest className="text-2xl mr-2 font-bold" />
           <h1 className="text-2xl font-semibold">Issues</h1>
@@ -59,7 +59,7 @@ const Footer = () => {
         </a>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

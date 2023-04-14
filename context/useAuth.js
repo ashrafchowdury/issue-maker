@@ -7,7 +7,7 @@ export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
 const AuthDataProvider = ({ children }) => {
-  // const [user, setuser] = useState(null);
+  const [users, setusers] = useState(null);
   const [isLoading, setisLoading] = useState(false);
   const [isUser, setisUser] = useState(false);
   const route = useRouter();
@@ -17,38 +17,42 @@ const AuthDataProvider = ({ children }) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      console.log(user);
-      // setuser(user);
+      setisUser(true);
+      setusers(user);
     } catch (error) {
       setisUser(false);
     }
   };
 
   const signup = async (email, password) => {
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      });
-      console.log(data);
-      // route.push("/editor");
-    } catch (error) {
-      toast.error("SignUp Filed");
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
+    if (error) {
+      toast.error("Signup failed");
       console.log(error);
+    } else {
+      setusers(data);
+      toast.success("Check You Email To Confirme Signup");
     }
   };
+
   const login = async (email, password) => {
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-      route.push("/editor");
-    } catch (error) {
-      toast.error("Login Filed");
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      toast.error("Invalid login credentials");
       console.log(error);
+    } else {
+      setusers(data);
+      route.push("/");
     }
   };
+
   const recovary = async (email) => {
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -59,6 +63,7 @@ const AuthDataProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const updateProfile = async (email) => {
     try {
       const { data, error } = await supabase.auth.updateUser({
@@ -69,14 +74,27 @@ const AuthDataProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const logout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      setisUser(false);
-      route.push("/");
-    } catch (error) {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
       toast.error("Logout Filed");
       console.log(error);
+    } else {
+      setusers(null);
+      route.push("/");
+    }
+  };
+
+  const github = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+    if (error) {
+      toast.error("Logout Filed");
+      console.log(error);
+    } else {
+      setisUser(false);
     }
   };
 
@@ -84,13 +102,14 @@ const AuthDataProvider = ({ children }) => {
     getUserData();
   }, []);
   const value = {
-    // user,
-    // setuser,
+    users,
+    setusers,
     isUser,
     signup,
     login,
     logout,
     recovary,
+    github,
     updateProfile,
     isLoading,
   };

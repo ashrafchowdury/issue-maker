@@ -7,7 +7,8 @@ import { toast } from "react-hot-toast";
 const login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const { signup, login, isLoading } = useAuth();
+  const [option, setoption] = useState("signup");
+  const { signup, login, isLoading, github } = useAuth();
   const router = useRouter();
 
   return (
@@ -29,19 +30,13 @@ const login = () => {
 
           <button
             className="w-full flex items-center justify-center font-semibold rounded-lg px-4 py-3"
-            onClick={() => toast.success("Private Beta")}
-            disabled={isLoading ? true : false}
+            onClick={() => github()}
+            // disabled={isLoading ? true : false}
           >
-            {/* {isLoading ? (
-              <Loading load={isLoading} />
-            ) : (
-              <> */}
             <FaGithub className=" text-xl md:text-[25px]" />
             <span className="text-sm md:text-[16px] ml-3">
               Log in with Github
             </span>
-            {/* </>
-            )} */}
           </button>
 
           <hr className="my-6 border-light dark:border-dark w-full" />
@@ -62,18 +57,31 @@ const login = () => {
           <input
             type="password"
             placeholder="Enter Password"
-            className="w-full px-4 py-3 rounded-lg bg-light dark:bg-dark mt-2 outline-transparent"
+            className="w-full px-4 py-3 rounded-lg bg-light dark:bg-dark mt-2 mb-2"
             onChange={(e) => setpassword(e.target.value)}
             value={password}
           />
+          <u></u>
+          {option == "signup" ? (
+            <p className=" cursor-pointer" onClick={() => setoption("login")}>
+              Have an Account: <u>Login</u>
+            </p>
+          ) : (
+            <p className=" cursor-pointer" onClick={() => setoption("signup")}>
+              New here: <u>Create Account</u>{" "}
+            </p>
+          )}
 
           <button
             className="w-full  text-white text-center font-semibold rounded-lg px-4 py-3 mt-9"
-            onClick={() => signup(email, password)}
+            onClick={() =>
+              option == "signup"
+                ? signup(email, password)
+                : login(email, password)
+            }
             disabled={isLoading ? true : false}
           >
-            Log In
-            {/* {loading ? <Loading load={loading} /> : "Log In"} */}
+            {option == "signup" ? "Sin Up" : "Log In"}
           </button>
         </section>
       </section>

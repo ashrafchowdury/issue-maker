@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Typed from "typed.js";
 
-
 export default function Home() {
   const ref = useRef(null);
 
@@ -24,36 +23,40 @@ export default function Home() {
   }, []);
   return (
     <>
-      <header className=" w-[80%] h-[90vh] mx-auto flex flex-col items-start justify-start">
-        <img src="header.svg" alt="image" className=" w-[380px] mt-24 mb-8" />
-        <h1 className="w-[90%] text-5xl font-bold capitalize">
+      <header className=" w-full md:w-[80%] mx-auto flex flex-col items-start justify-start">
+        <img src="header.svg" alt="image" className=" w-[200px] md:w-[320px] lg:w-[380px] mt-12 md:mt-24 mb-8" />
+        <h1 className="w-[90%] text-2xl md:text-4xl lg:text-5xl font-bold capitalize">
           Quickly create an <strong>Issue</strong> for <span ref={ref}></span>
         </h1>
-        <p className="w-[70%] text-xl mb-14 mt-6">
+        <p className=" w-full md:w-[90%] lg:w-[70%] text-sm md:text-lg lg:text-xl mb-8 md:mb-14 mt-4 md:mt-6 font-light">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cumque
           laboriosam non dolore illum in dicta laudantium enim eveniet ad.
           laboriosam non dolore illum in dicta laudantium enim eveniet ad.
         </p>
-        <Link href="/editor">
-          <button className=" px-5 py-2 rounded-lg bg-dark">
-            Getting Started
-          </button>
-        </Link>
+        <div className="flex items-center">
+          <Link href="/editor">
+            <button className="text-sm md:text-[16px] px-5 py-2 rounded-lg bg-dark mr-3 md:mr-5">
+              Create Issue
+            </button>
+          </Link>
+          <a href="/editor" className="text-sm md:text-[16px] px-5 py-2 rounded-lg border">
+            View GitHub
+          </a>
+        </div>
       </header>
 
-      <section className="h-[95vh] flex flex-col items-center justify-center">
-        <h2 className=" text-4xl font-bold">Preview</h2>
-        <p className=" w-[50%] text-center text-xl mt-4 mb-12">
+      <section className=" flex flex-col items-center justify-center my-24 md:my-28 lg:my-32">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Preview</h2>
+        <p className="w-full md:w-[80%] lg:w-[50%] text-center text-sm md:text-lg lg:text-xl mt-4 mb-12">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
           quisquam facilis alias sit quaerat inventore aspernatur. Deleniti
         </p>
         <img
           src="preview.png"
           alt=""
-          className="w-[1050px] rounded-lg border shadow-2xl"
+          className="w-full md:w-[650px] lg:w-[1050px] rounded-lg border shadow-2xl"
         />
       </section>
-    
     </>
   );
 }
