@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Options from "@/components/Options";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@/context/useAuth";
@@ -15,7 +15,13 @@ const editor = () => {
     "As an advanced text writer, your primary goal"
   );
   const router = useRouter();
-  const { users } = useAuth();
+  const { isUser } = useAuth();
+
+  useEffect(() => {
+    if (!isUser) {
+      router.push("/login");
+    }
+  }, []);
 
   const configuration = new Configuration({
     apiKey: process.env.NEXT_PUBLIC_APP_OPENAI_API_KEY,
@@ -59,10 +65,7 @@ const editor = () => {
   ];
   const selectTone = ["formal", "creative", "frash", "confident"];
 
-  if (!users?.email) {
-    router.push("/login");
-    return null
-  } else {
+
     return (
       <section className="w-full md:w-[80%] mx-auto">
         <h1 className=" text-2xl md:text-3xl lg:text-4xl font-semibold mt-16 md:mt-20 lg:mt-24 mb-10">
@@ -137,7 +140,7 @@ const editor = () => {
         )}
       </section>
     );
-  }
+
 };
 
 export default editor;

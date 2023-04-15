@@ -9,7 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 const AuthDataProvider = ({ children }) => {
   const [users, setusers] = useState(null);
   const [isLoading, setisLoading] = useState(false);
-  const [isUser, setisUser] = useState(false);
+  const [isUser, setisUser] = useState(true);
   const route = useRouter();
 
   const getUserData = async () => {
@@ -17,7 +17,7 @@ const AuthDataProvider = ({ children }) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      setisUser(true);
+      user?.email ? setisUser(true) : setisUser(false);
       setusers(user);
     } catch (error) {
       setisUser(false);
@@ -47,7 +47,8 @@ const AuthDataProvider = ({ children }) => {
       toast.error("Invalid login credentials");
       console.log(error);
     } else {
-      setusers(data);
+      setisUser(true);
+      getUserData();
       route.push("/");
     }
   };
@@ -87,6 +88,7 @@ const AuthDataProvider = ({ children }) => {
       toast.error("Logout Filed");
       console.log(error);
     } else {
+      setisUser(false);
       setusers(null);
       route.push("/");
     }
@@ -100,7 +102,7 @@ const AuthDataProvider = ({ children }) => {
       toast.error("Logout Filed");
       console.log(error);
     } else {
-      setisUser(false);
+      setisUser(true);
     }
   };
   const google = async () => {
@@ -118,14 +120,14 @@ const AuthDataProvider = ({ children }) => {
       toast.error("Google Authentication Filed");
       console.log(error);
     } else {
-      setusers(data);
-      setisUser(false);
+      setisUser(true);
     }
   };
 
   useEffect(() => {
     getUserData();
   }, []);
+  
   const value = {
     users,
     setusers,
