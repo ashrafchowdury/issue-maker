@@ -1,38 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center"><img src="https://github.com/ashrafchowdury/issue-maker/blob/main/public/poster.png?raw=true"></p>
 
-## Getting Started
+# Issue Maker
+Are you tired of spending hours creating issues on GitHub? Let our state-of-the-art application do the heavy lifting for you. With its advanced AI capabilities, you can submit bug reports and feature requests in a snap!
 
-First, run the development server:
+## Build with
+<table><tbody><tr><th  width="83">Tech</th><th >Description</th></tr><tr><td  width="83"><img src="https://skillicons.dev/icons?i=javascript" alt="javascript"></td><td >Javascript is the primary language.</td></tr><tr><td  width="83"><img src="https://skillicons.dev/icons?i=nextjs"></td><td >Nextjs se to create the application</td></tr><tr><td  width="83"><img src="https://skillicons.dev/icons?i=tailwind"></td><td >Tailwind for styling</td></tr><tr><td  width="83"><img src="https://skillicons.dev/icons?i=supabase"></td><td >Supabase backend authentication service</td></tr><tr><td  width="83"><img src="https://th.bing.com/th?id=OSK.6d6a14f9257f8b40fbba5716e1725f12&amp;w=148&amp;h=148&amp;c=7&amp;o=6&amp;pid=SANGAM" width="48" height="48"></td><td >Open Ai is used to generate the issues</td></tr></tbody></table>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Upcoming
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   Save issues
+    
+*   Generate more clear issue
+    
+*   Dark theme
+    
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+> If you want to conribute then read the <a target="_blank"  href="https://github.com/ashrafchowdury/issue-maker/blob/main/CONTRIBUTING.md">contribution guide lines</a>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Our Goal
+Our goal is to make this application easier to use so that all the developers or non-developers can create issues easily & quickly.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 🛡️ License
+Readme Maker is licensed under the **MIT License** - see the <a target="_blank"  href="https://github.com/ashrafchowdury/readme-maker/blob/main/LICENSE"><strong>LICENSE</strong></a> file for details.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🙏 Support
+Don't forget to leave a star ⭐️.
