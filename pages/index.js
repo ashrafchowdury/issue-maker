@@ -62,7 +62,7 @@ export default function Home() {
           feature requests.
         </p>
         <img
-          src="preview.png"
+          src="poster.png"
           alt=""
           className="w-full md:w-[650px] lg:w-[1050px] rounded-lg border shadow-2xl"
         />
