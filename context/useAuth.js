@@ -33,7 +33,6 @@ const AuthDataProvider = ({ children }) => {
       toast.error("Signup failed");
       console.log(error);
     } else {
-      setusers(data);
       toast.success("Check You Email To Confirme Signup");
     }
   };
@@ -54,14 +53,21 @@ const AuthDataProvider = ({ children }) => {
   };
 
   const recovary = async (email) => {
-    try {
-      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: "https://example.com/update-password",
-      });
-    } catch (error) {
+    console.log(email);
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:3000/forget",
+    });
+    if (error) {
       toast.error("Forgate Filed");
       console.log(error);
+    } else {
+      toast.success("Check Your Email");
     }
+  };
+  const newPassword = async (password) => {
+    const { data, error } = await supabase.auth.updateUser({
+      password: password,
+    });
   };
 
   const updateProfile = async (email) => {
@@ -97,6 +103,25 @@ const AuthDataProvider = ({ children }) => {
       setisUser(false);
     }
   };
+  const google = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
+      },
+    });
+
+    if (error) {
+      toast.error("Google Authentication Filed");
+      console.log(error);
+    } else {
+      setusers(data);
+      setisUser(false);
+    }
+  };
 
   useEffect(() => {
     getUserData();
@@ -109,7 +134,9 @@ const AuthDataProvider = ({ children }) => {
     login,
     logout,
     recovary,
+    newPassword,
     github,
+    google,
     updateProfile,
     isLoading,
   };

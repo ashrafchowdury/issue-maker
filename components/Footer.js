@@ -2,6 +2,8 @@ import React from "react";
 import { FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { BiGitPullRequest } from "react-icons/bi";
 import Link from "next/link";
+
+
 const Footer = () => {
   return (
     <>
@@ -32,14 +34,14 @@ const Footer = () => {
           </Link>
         </div>
         <div className=" flex justify-center items-center space-x-7 text-2xl">
-          <a href="https://twitter.com/readme_maker" target="_blank">
+          <a href="https://twitter.com/ashraf_chowdury" target="_blank">
             <FaTwitter />
           </a>
-          <a href="https://twitter.com/readme_maker" target="_blank">
+          <a href="https://twitter.com/ashraf_chowdury" target="_blank">
             <FaLinkedinIn />
           </a>
           <a
-            href="https://github.com/ashrafchowdury/readme-maker"
+            href="https://github.com/ashrafchowdury/issue-maker"
             target="_blank"
           >
             <FaGithub />
