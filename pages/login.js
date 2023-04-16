@@ -21,7 +21,7 @@ const login = () => {
 
   const handleLogin = () => {
     if (!email || !password) {
-      toast.error("Fillup Both Fileds");
+      toast.error("Fill Up Both Fields");
     } else {
       option == "signup" ? signup(email, password) : login(email, password);
     }

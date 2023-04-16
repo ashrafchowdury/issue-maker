@@ -12,8 +12,8 @@ export default function Home() {
         "<strong>Refector</strong>",
         "<strong>Features</strong>",
       ],
-      typeSpeed: 80,
-      backSpeed: 80,
+      typeSpeed: 100,
+      backSpeed: 100,
     });
 
     return () => {
