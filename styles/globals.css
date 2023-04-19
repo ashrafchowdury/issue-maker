@@ -9,37 +9,24 @@
   button {
     @apply bg-dark dark:bg-light text-light dark:text-dark;
   }
-  /* .icon {
-    @apply bg-dark dark:bg-light text-light dark:text-dark;
-  } */
-  /* Adding CSS manually is only necessary in JSFiddle,
-   where CSS can't be inserted into the <head> */
-  .typed-cursor {
-    opacity: 1;
-    animation: typedjsBlink 0.7s infinite;
-    -webkit-animation: typedjsBlink 0.7s infinite;
-    animation: typedjsBlink 0.7s infinite;
-  }
-  @keyframes typedjsBlink {
-    50% {
-      opacity: 0;
+  
+  .spinner {
+    width: 26px;
+    height: 26px;
+    margin: 0 auto;
+    --c: radial-gradient(farthest-side,#ffffff 92%,#0000);
+    background: var(--c) 50% 0,
+           var(--c) 50% 100%,
+           var(--c) 100% 50%,
+           var(--c) 0    50%;
+    background-size: 7.4px 7.4px;
+    background-repeat: no-repeat;
+    animation: spinner-kh173p 0.8s infinite;
+ }
+ 
+ @keyframes spinner-kh173p {
+    to {
+       transform: rotate(.5turn);
     }
-  }
-  @-webkit-keyframes typedjsBlink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  .typed-fade-out {
-    opacity: 0;
-    transition: opacity 0.25s;
-    -webkit-animation: 0;
-    animation: 0;
-  }
+ }
 }

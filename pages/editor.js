@@ -5,6 +5,7 @@ import { useAuth } from "@/context/useAuth";
 import { useRouter } from "next/router";
 import { BiCopy } from "react-icons/bi";
 import { Configuration, OpenAIApi } from "openai";
+import Loading from "@/components/ui/Loading";
 
 const editor = () => {
   const [options, setoptions] = useState("");
@@ -12,6 +13,7 @@ const editor = () => {
   const [tone, settone] = useState("formal");
   const [desc, setdesc] = useState("");
   const [issue, setissue] = useState("");
+  const [isLoading, setisLoading] = useState(false);
   const router = useRouter();
   const { isUser } = useAuth();
   const elementRef = useRef(null);
@@ -42,9 +44,10 @@ const editor = () => {
     } else {
       try {
         toast.success("Start creating the isuue");
+        setisLoading(true);
         const response = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `As an advanced text writer, your primary goal is to create issues on GitHub. This may involve feature requests, bug solutions, code refactoring, documentation issues and lots more. To effectively create issues, it is important to be detailed and thorough in your responses. The voice tone has to be ${tone}. Use markdown code to show the output information, and make heading 1, heading 2, heading 3, bold, italic underline wherever wants also first you have to create a title for adding to the issue title section.  Now the main instruction is to create a ${
+          prompt: `As an advanced text writer, your primary goal is to create issues on GitHub. This may involve feature requests, bug solutions, code refactoring, documentation issues and lots more. To effectively create issues, it is important to be detailed and thorough in your responses. The voice tone has to be ${tone}. Use markdown code to show the output information, and make heading 1, heading 2, heading 3 wherever wants also first you have to create a title for adding to the issue title section.  Now the main instruction is to create a ${
             options == "others" ? type : options
           } issue where ${desc}. Remember the output must have to be on the markdown code so that I can copy & paste it directly on GitHub.`,
           temperature: 0,
@@ -55,6 +58,7 @@ const editor = () => {
         });
         toast.success("Issue created successfully");
         setissue(response?.data.choices[0].text);
+        setisLoading(false);
         scrollDown();
       } catch (error) {
         toast.error("Someting was wrong");
@@ -120,10 +124,13 @@ const editor = () => {
         value={desc}
       ></textarea>
       <button
-        className="text-sm md:text-[16px] px-5 py-2 rounded-lg bg-dark mt-2"
+        className={`text-sm md:text-[16px] w-32 py-2 rounded-lg bg-dark mt-2 ${
+          isLoading && " opacity-90 cursor-not-allowed"
+        }`}
         onClick={handleCreateIssue}
+        disabled={isLoading}
       >
-        Create Issue
+        {isLoading ? <Loading /> : "Create Issue"}
       </button>
 
       {issue.length > 0 && (
